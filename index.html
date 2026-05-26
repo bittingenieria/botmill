@@ -144,6 +144,27 @@ header{position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:bl
 .mock-wrap .label{font-weight:700;color:var(--verde-1);font-size:.92rem;text-align:center}
 .mock-wrap .label small{display:block;color:var(--gris-2);font-weight:400;margin-top:2px;font-size:.78rem}
 
+/* INFORMES AUTOMÁTICOS */
+.informes{background:linear-gradient(180deg,#f7faf7 0%,#eaf4ec 100%)}
+.informes-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1000px;margin:0 auto}
+.informe-card{background:#fff;border-radius:18px;padding:32px;box-shadow:var(--shadow);border-top:5px solid var(--verde-3);transition:var(--transition);display:flex;flex-direction:column}
+.informe-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-strong)}
+.informe-card.mensual{border-top-color:var(--acento)}
+.informe-card .ic{font-size:2.4rem;margin-bottom:6px}
+.informe-card .freq{display:inline-block;background:var(--verde-bg);color:var(--verde-1);padding:5px 14px;border-radius:20px;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px;align-self:flex-start}
+.informe-card.mensual .freq{background:var(--acento-bg);color:#a86d05}
+.informe-card h3{font-family:var(--font-title);font-size:1.7rem;color:var(--verde-1);margin-bottom:10px;line-height:1}
+.informe-card p{color:var(--gris-2);font-size:.95rem;margin-bottom:14px;line-height:1.5}
+.informe-card ul{list-style:none;padding:0;margin:0 0 18px;flex:1}
+.informe-card ul li{position:relative;padding-left:22px;font-size:.9rem;color:var(--gris);margin-bottom:6px;line-height:1.4}
+.informe-card ul li::before{content:"✓";position:absolute;left:0;top:0;color:var(--verde-2);font-weight:700}
+.informe-card .delivery{display:flex;gap:10px;padding-top:14px;border-top:1px solid var(--verde-bg-2)}
+.informe-card .delivery span{background:var(--verde-1);color:#fff;padding:6px 14px;border-radius:30px;font-size:.82rem;font-weight:600}
+.informe-card.mensual .delivery span:first-child{background:var(--verde-1)}
+.informe-card.mensual .delivery span:last-child{background:var(--acento);color:#fff}
+.informes-foot{text-align:center;color:var(--gris-2);font-size:.95rem;margin-top:32px;max-width:680px;margin-left:auto;margin-right:auto}
+.informes-foot code{background:var(--verde-1);color:#fff;padding:3px 10px;border-radius:6px;font-family:inherit;font-weight:600}
+
 /* FASES (timeline) */
 .fases{background:linear-gradient(180deg,#eaf4ec 0%,#f7faf7 100%)}
 .fases-list{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
@@ -230,12 +251,12 @@ footer a:hover{color:#fff}
   .hero-grid{grid-template-columns:1fr;text-align:center}
   .hero .lead{margin-left:auto;margin-right:auto}
   .hero .ctas{justify-content:center}
-  .features-grid,.mocks-grid,.security-grid,.roles-grid{grid-template-columns:repeat(2,1fr)}
+  .features-grid,.mocks-grid,.security-grid,.roles-grid,.informes-grid{grid-template-columns:repeat(2,1fr)}
   .nav .links .btn-outline{display:none}
 }
 @media(max-width:600px){
   .section{padding:64px 0}
-  .dolores-grid,.features-grid,.mocks-grid,.security-grid,.roles-grid,.contacto-grid{grid-template-columns:1fr}
+  .dolores-grid,.features-grid,.mocks-grid,.security-grid,.roles-grid,.contacto-grid,.informes-grid{grid-template-columns:1fr}
   .wordmark{font-size:1.3rem}
   .nav .logo img{height:28px}
   .trust-inner{gap:24px}
@@ -266,7 +287,7 @@ footer a:hover{color:#fff}
       <span class="badge">Para aserraderos</span>
       <div class="wordmark">Bo<span class="tt">tt</span>Mill</div>
       <h1>Tu aserradero entero,<br/>en el bolsillo.</h1>
-      <p class="lead">Digitaliza producción, máquinas, consumos y mantenimiento. Todo accesible desde el chat en vivo, en tiempo real, desde el móvil de quien toma las decisiones.</p>
+      <p class="lead">Digitaliza producción, máquinas, consumos y mantenimiento. Todo accesible desde el chat en vivo, en tiempo real, desde cualquier lugar.</p>
       <span class="seal">🎯 A medida · 📦 Llave en mano · 🔒 Datos siempre en local</span>
       <div class="ctas">
         <a href="#cta" class="btn btn-primary">Solicitar visita técnica</a>
@@ -333,7 +354,7 @@ footer a:hover{color:#fff}
       <div class="feat"><div class="ico">⚙️</div><h3>Estado de máquinas</h3><p>OK, aviso o parada de cada máquina. Horas operativas. Paros con duración.</p></div>
       <div class="feat acento"><div class="ico">🔧</div><h3>Mantenimiento predictivo</h3><p>Vibración, temperatura, horas. Alerta antes de la rotura.<span class="ast">* Requiere sensores específicos</span></p></div>
       <div class="feat acento"><div class="ico">⚡</div><h3>Consumo por máquina</h3><p>kWh hoy, pico instantáneo, baseline mensual.<span class="ast">* Requiere sensores específicos</span></p></div>
-      <div class="feat"><div class="ico">📊</div><h3>Resumen semanal + informe mensual</h3><p>PDF automático cada día 1 — chat en vivo y email.</p></div>
+      <div class="feat"><div class="ico">📊</div><h3>Resumen quincenal + informe mensual</h3><p>PDF automático cada día 1 — chat en vivo y email.</p></div>
       <div class="feat"><div class="ico">💬</div><h3>Chat en lenguaje natural</h3><p>Pregunta como hablas. Sin formación, sin VPN, sin Excel.</p></div>
     </div>
   </div>
@@ -407,19 +428,19 @@ footer a:hover{color:#fff}
         <div class="tg-mock">
           <div class="tg-h"><div class="dot">B</div><div>BottMill<span class="sub">bot</span></div></div>
           <div class="tg-m">
-            <div class="hh">📊 Resumen semanal</div>
-            <b>Semana 18/05–24/05/2026</b><br/><br/>
+            <div class="hh">📊 Resumen quincenal</div>
+            <b>Quincena 11/05–24/05/2026</b><br/><br/>
             <ul>
               <li>Tablas: <b>16.840</b></li>
               <li>Núcleos: <b>5.920</b></li>
               <li>Costeros: <b>3.640</b></li>
               <li>Volumen: <b>312,5 m³</b></li>
             </ul>
-            <br/>vs sem. ant.: Volumen <b>+8,2 %</b>, Tablas <b>+11 %</b>
+            <br/>vs quincena ant.: Volumen <b>+8,2 %</b>, Tablas <b>+11 %</b>
             <span class="time">09:09</span>
           </div>
         </div>
-        <div class="label">Resumen semanal<small>Automático cada lunes</small></div>
+        <div class="label">Resumen quincenal<small>Automático cada 15 días</small></div>
       </div>
 
       <div class="mock-wrap">
@@ -459,6 +480,44 @@ footer a:hover{color:#fff}
         <div class="label">Mantenimiento<small>"alertas pendientes"</small></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- INFORMES AUTOMÁTICOS -->
+<section class="section informes fade-in" id="informes">
+  <div class="container">
+    <h2 class="section-title">Resúmenes e informes automáticos</h2>
+    <p class="section-subtitle">Sin pedirlos, sin prepararlos. El sistema te los entrega a los responsables — <strong>por chat en vivo y por email</strong>, las dos vías a la vez.</p>
+    <div class="informes-grid">
+      <div class="informe-card">
+        <div class="ic">📊</div>
+        <div class="freq">Cada 15 días</div>
+        <h3>Resumen quincenal</h3>
+        <p>Producción de la quincena por línea, comparativa con la quincena anterior, día a día, paros e incidencias destacadas.</p>
+        <ul>
+          <li>Tablas, núcleos, costeros y m³ por línea</li>
+          <li>Comparativa vs quincena anterior (%)</li>
+          <li>Día a día con horas operativas</li>
+          <li>Paros y duración</li>
+        </ul>
+        <div class="delivery"><span>💬 Chat en vivo</span><span>📧 Email</span></div>
+      </div>
+      <div class="informe-card mensual">
+        <div class="ic">📄</div>
+        <div class="freq">Cada día 1 del mes</div>
+        <h3>Informe mensual PDF</h3>
+        <p>PDF con la marca de tu aserradero. KPIs, gráficos, evolución diaria, reparto por línea y máquina, y comparativa con el mes anterior.</p>
+        <ul>
+          <li>Resumen del período + producción diaria</li>
+          <li>Reparto por línea y por máquina</li>
+          <li>Horas operativas y paros</li>
+          <li>Sección mantenimiento*</li>
+          <li>Comparativa mes anterior + acumulado anual</li>
+        </ul>
+        <div class="delivery"><span>💬 Chat en vivo</span><span>📧 Email</span></div>
+      </div>
+    </div>
+    <p class="informes-foot">¿Quieres uno anterior? Pídelo al bot — <code>/informe</code> → eliges el período → lo recibes al chat.</p>
   </div>
 </section>
 
@@ -542,7 +601,7 @@ footer a:hover{color:#fff}
           <tr><td>Volumen m³ por línea</td><td>Medida de consumo eléctrico por línea</td></tr>
           <tr><td>Estado y horas operativas de máquinas</td><td>Alertas predictivas por umbrales</td></tr>
           <tr><td>Paros con duración</td><td>Informe mensual con sección mantenimiento</td></tr>
-          <tr><td>Resumen semanal + informe mensual PDF</td><td>Métricas adicionales que detectéis útiles</td></tr>
+          <tr><td>Resumen quincenal + informe mensual PDF</td><td>Métricas adicionales que detectéis útiles</td></tr>
         </tbody>
       </table>
     </div>
