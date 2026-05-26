@@ -165,6 +165,43 @@ header{position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:bl
 .informes-foot{text-align:center;color:var(--gris-2);font-size:.95rem;margin-top:32px;max-width:680px;margin-left:auto;margin-right:auto}
 .informes-foot code{background:var(--verde-1);color:#fff;padding:3px 10px;border-radius:6px;font-family:inherit;font-weight:600}
 
+/* Previews dentro de cada informe-card */
+.preview{margin:-8px 0 18px;border-radius:12px;overflow:hidden;position:relative}
+.preview-chat{background:linear-gradient(135deg,#a5d4a8 0%,#c5e2c8 100%);padding:14px 12px;font-family:-apple-system,'Segoe UI',Roboto,sans-serif}
+.preview-chat .pc-head{background:#fff;border-radius:24px;padding:5px 12px;display:flex;align-items:center;gap:8px;font-weight:600;font-size:.78rem;color:#222;margin-bottom:10px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.preview-chat .pc-head .dot{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--verde-2),var(--verde-3));color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0}
+.preview-chat .pc-head small{display:block;color:#888;font-size:.62rem;font-weight:400;line-height:1}
+.preview-chat .msg{background:#fff;border-radius:12px;padding:10px 12px;font-size:.76rem;line-height:1.45;color:#1a1a1a;box-shadow:0 1px 2px rgba(0,0,0,.08);max-width:96%}
+.preview-chat .msg .hh{font-weight:700;font-size:.82rem;margin-bottom:5px;color:var(--verde-1);display:flex;align-items:center;gap:5px}
+.preview-chat .msg ul{list-style:none;padding:0;margin:0}
+.preview-chat .msg ul li{position:relative;padding-left:0;font-size:.74rem;color:#222;margin:1px 0;line-height:1.4}
+.preview-chat .msg ul li::before{content:""}
+.preview-chat .msg b{color:var(--verde-1)}
+.preview-chat .msg .vs{display:inline-block;background:var(--verde-bg);color:var(--verde-2);padding:1px 6px;border-radius:6px;font-size:.66rem;font-weight:700;margin-left:4px}
+.preview-chat .msg .vs.dn{background:#fde3dd;color:#b3261e}
+.preview-chat .time{display:block;text-align:right;font-size:.6rem;color:#7a8a7d;margin-top:5px}
+
+.preview-pdf{background:#eef2ee;padding:14px;display:flex;justify-content:center}
+.preview-pdf .sheet{background:#fff;width:100%;max-width:260px;aspect-ratio:210/297;box-shadow:0 4px 14px rgba(0,0,0,.15);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;font-size:.55rem;line-height:1.25;color:#222}
+.preview-pdf .ph{background:var(--verde-3);position:relative;padding:8px 10px 6px;color:#1a1a1a}
+.preview-pdf .ph::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--verde-1)}
+.preview-pdf .ph .ttl{font-size:.7rem;font-weight:800;letter-spacing:.2px}
+.preview-pdf .ph .per{font-size:.6rem;margin-top:1px}
+.preview-pdf .ph .cli{font-size:.52rem;color:#37461e;margin-top:1px}
+.preview-pdf .ph .lg{position:absolute;top:6px;right:8px;background:#fff;width:22px;height:22px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:.5rem;font-weight:800;color:var(--verde-1)}
+.preview-pdf .pbody{padding:8px 9px;flex:1;display:flex;flex-direction:column;gap:6px}
+.preview-pdf .kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px}
+.preview-pdf .kpi{background:var(--verde-bg);border-left:2px solid var(--verde-3);padding:4px 4px 3px;border-radius:2px}
+.preview-pdf .kpi .l{font-size:.42rem;color:var(--verde-1);font-weight:700;text-transform:uppercase;letter-spacing:.2px}
+.preview-pdf .kpi .v{font-size:.62rem;font-weight:800;color:#1a1a1a;line-height:1}
+.preview-pdf .kpi .u{font-size:.42rem;color:#888}
+.preview-pdf .ststit{font-size:.56rem;font-weight:700;color:var(--verde-1);border-bottom:.5px solid var(--verde-3);padding-bottom:2px}
+.preview-pdf .chart{height:34px;background:linear-gradient(180deg,#fff,#f4f7f4);border-radius:2px;display:flex;align-items:flex-end;gap:2px;padding:3px}
+.preview-pdf .chart i{flex:1;background:var(--verde-2);border-radius:1px 1px 0 0;display:block}
+.preview-pdf .conc{background:var(--verde-bg);border-left:2px solid var(--verde-3);padding:4px 5px;font-size:.5rem;color:#1a1a1a;border-radius:2px}
+.preview-pdf .conc b{color:var(--verde-1)}
+.preview-pdf .pftr{font-size:.42rem;color:#888;border-top:.5px solid #ddd;padding:3px 9px;display:flex;justify-content:space-between}
+
 /* FASES (timeline) */
 .fases{background:linear-gradient(180deg,#eaf4ec 0%,#f7faf7 100%)}
 .fases-list{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
@@ -494,6 +531,23 @@ footer a:hover{color:#fff}
         <div class="freq">Cada 15 días</div>
         <h3>Resumen quincenal</h3>
         <p>Producción de la quincena por línea, comparativa con la quincena anterior, día a día, paros e incidencias destacadas.</p>
+        <div class="preview" aria-hidden="true">
+          <div class="preview-chat">
+            <div class="pc-head"><div class="dot">B</div><div>BottMill<small>bot</small></div></div>
+            <div class="msg">
+              <div class="hh">📊 Resumen quincenal · 11/05 – 24/05</div>
+              <ul>
+                <li>🌲 Volumen: <b>892 m³</b> <span class="vs">+6,2 %</span></li>
+                <li>📋 Tablas: <b>48.310</b> <span class="vs">+4,1 %</span></li>
+                <li>🪵 Núcleos: <b>16.420</b></li>
+                <li>🪚 Línea 1: <b>421 m³</b> · L2: <b>471 m³</b></li>
+                <li>⏱️ Horas op.: <b>168 h</b> · paros <b>9 h</b> <span class="vs dn">+2 h</span></li>
+                <li>⚡ kWh: <b>9.840</b> <span class="vs">−1,8 %</span></li>
+              </ul>
+              <span class="time">lun 25/05 · 08:00</span>
+            </div>
+          </div>
+        </div>
         <ul>
           <li>Tablas, núcleos, costeros y m³ por línea</li>
           <li>Comparativa vs quincena anterior (%)</li>
@@ -507,6 +561,36 @@ footer a:hover{color:#fff}
         <div class="freq">Cada día 1 del mes</div>
         <h3>Informe mensual PDF</h3>
         <p>PDF con la marca de tu aserradero. KPIs, gráficos, evolución diaria, reparto por línea y máquina, y comparativa con el mes anterior.</p>
+        <div class="preview" aria-hidden="true">
+          <div class="preview-pdf">
+            <div class="sheet">
+              <div class="ph">
+                <div class="lg">B</div>
+                <div class="ttl">INFORME MENSUAL DE PRODUCCIÓN</div>
+                <div class="per">Mayo 2026</div>
+                <div class="cli">Tu Aserradero S.L.</div>
+              </div>
+              <div class="pbody">
+                <div class="kpis">
+                  <div class="kpi"><div class="l">Volumen</div><div class="v">1.842</div><div class="u">m³</div></div>
+                  <div class="kpi"><div class="l">Tablas</div><div class="v">98.412</div><div class="u">uds</div></div>
+                  <div class="kpi"><div class="l">Núcleos</div><div class="v">33.870</div><div class="u">uds</div></div>
+                  <div class="kpi"><div class="l">Media/día</div><div class="v">86,7</div><div class="u">m³/día</div></div>
+                  <div class="kpi"><div class="l">Horas op.</div><div class="v">336</div><div class="u">h</div></div>
+                  <div class="kpi"><div class="l">kWh</div><div class="v">19.640</div><div class="u">kWh</div></div>
+                </div>
+                <div class="ststit">Volumen por día (m³)</div>
+                <div class="chart">
+                  <i style="height:55%"></i><i style="height:68%"></i><i style="height:72%"></i><i style="height:46%"></i><i style="height:81%"></i><i style="height:90%"></i><i style="height:38%"></i><i style="height:64%"></i><i style="height:75%"></i><i style="height:82%"></i><i style="height:60%"></i><i style="height:50%"></i><i style="height:88%"></i><i style="height:70%"></i><i style="height:78%"></i><i style="height:55%"></i><i style="height:84%"></i><i style="height:66%"></i><i style="height:72%"></i><i style="height:90%"></i>
+                </div>
+                <div class="conc">Mejor día: <b>26 (98 m³)</b>. <b>17 de 21</b> días superaron la media. Línea 2 lidera con <b>54 %</b> del volumen.</div>
+                <div class="ststit">Comparativa abril vs mayo</div>
+                <div class="conc">Volumen <b>+8,4 %</b> · ritmo medio <b>118 → 124 tablas/h</b> · paros <b>−12 %</b>.</div>
+              </div>
+              <div class="pftr"><span>Bitt Ingeniería · BottMill</span><span>Pág. 1 / 4</span></div>
+            </div>
+          </div>
+        </div>
         <ul>
           <li>Resumen del período + producción diaria</li>
           <li>Reparto por línea y por máquina</li>
