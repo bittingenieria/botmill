@@ -283,8 +283,44 @@ footer .foot-logo img{height:34px;filter:brightness(0) invert(1);opacity:.9}
 footer a{color:#d8f0d8}
 footer a:hover{color:#fff}
 
-.fade-in{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+/* Smoother fade-in con cubic-bezier */
+.fade-in{opacity:0;transform:translateY(28px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
 .fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* Stagger de hijos: cards entran en cadena */
+.stagger > *{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.stagger.visible > *{opacity:1;transform:translateY(0)}
+.stagger.visible > *:nth-child(1){transition-delay:.04s}
+.stagger.visible > *:nth-child(2){transition-delay:.12s}
+.stagger.visible > *:nth-child(3){transition-delay:.20s}
+.stagger.visible > *:nth-child(4){transition-delay:.28s}
+.stagger.visible > *:nth-child(5){transition-delay:.36s}
+.stagger.visible > *:nth-child(6){transition-delay:.44s}
+.stagger.visible > *:nth-child(7){transition-delay:.52s}
+.stagger.visible > *:nth-child(8){transition-delay:.60s}
+
+/* Pulse sutil en CTA primarias */
+@keyframes ctaPulse{0%,100%{box-shadow:0 6px 18px rgba(31,110,61,.30)}50%{box-shadow:0 8px 28px rgba(58,168,86,.55)}}
+.hero .btn-primary,.cta-final .btn-primary{animation:ctaPulse 2.6s ease-in-out infinite}
+.cta-final .btn-primary{animation:ctaPulse 2.6s ease-in-out infinite,bgPulse 2.6s ease-in-out infinite}
+@keyframes bgPulse{0%,100%{background:#fff;color:var(--verde-1)}50%{background:var(--acento);color:#fff}}
+
+/* Indicador "typing" reutilizable */
+@keyframes typingBounce{0%,80%,100%{transform:translateY(0);opacity:.35}40%{transform:translateY(-3px);opacity:1}}
+.typing-dots{display:inline-flex;gap:4px;padding:8px 0;align-items:center}
+.typing-dots span{width:6px;height:6px;background:var(--verde-2);border-radius:50%;animation:typingBounce 1.4s infinite ease-in-out}
+.typing-dots span:nth-child(2){animation-delay:.18s}
+.typing-dots span:nth-child(3){animation-delay:.36s}
+
+/* Hover/tap lift más smooth */
+.feat,.role,.sec-card,.dolor-card,.fase,.informe-card,.contacto-card,.shot{will-change:transform}
+
+/* Anti-flicker en imágenes que entran */
+img{backface-visibility:hidden}
+
+/* Sticky CTA flotante (solo mobile) */
+.mobile-cta{display:none}
+@keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
 
 @media(max-width:960px){
   .hero-grid{grid-template-columns:1fr;text-align:center}
@@ -294,13 +330,111 @@ footer a:hover{color:#fff}
   .nav .links .btn-outline{display:none}
 }
 @media(max-width:600px){
-  .section{padding:64px 0}
-  .dolores-grid,.features-grid,.mocks-grid,.security-grid,.roles-grid,.contacto-grid,.informes-grid{grid-template-columns:1fr}
+  .container{padding:0 18px}
+  .section{padding:58px 0}
+
+  /* HEADER mobile: logo izq + BottMill der, sin links (los reemplaza la sticky CTA) */
+  .nav{grid-template-columns:auto 1fr;gap:12px}
+  .nav .logo{justify-self:start}
+  .nav .brand{justify-self:end}
+  .nav .brand .wordmark{font-size:1.55rem}
+  .nav .logo img{height:30px}
+  .nav .links{display:none}
+
+  .section-title{font-size:1.7rem;line-height:1.15}
+  .section-subtitle{margin-bottom:38px;font-size:.98rem;max-width:none}
+
+  /* HERO mobile compacto */
+  .hero{padding:48px 0 60px}
+  .hero .wordmark{font-size:2.3rem;margin-bottom:6px}
+  .hero h1{font-size:clamp(1.95rem,8.5vw,2.6rem);letter-spacing:0;line-height:1.05;margin-bottom:16px}
+  .hero .lead{font-size:1rem;margin-bottom:18px;max-width:none}
+  .hero .badge{font-size:.7rem;letter-spacing:.6px;padding:5px 12px;margin-bottom:14px}
+  .hero .seal{font-size:.78rem;padding:6px 12px;margin-bottom:24px;display:inline-block}
+  .hero .ctas{flex-direction:column;align-items:stretch;gap:10px}
+  .hero .ctas .btn{width:100%}
+  .tg-mock{margin:26px auto 0;max-width:340px}
+
+  /* DOLORES / FEATURES / SECCIONES en 1 col */
+  .dolores-grid,.features-grid,.mocks-grid,.security-grid,.roles-grid,.contacto-grid,.informes-grid,.fases-grid{grid-template-columns:1fr}
   .wordmark{font-size:1.3rem}
+  .trust-inner{gap:18px}
+
+  .dolor-card{padding:18px 18px 18px 56px}
+  .dolor-card::before{left:14px;top:18px;width:28px;height:28px;font-size:.95rem}
+  .feat{padding:24px 20px}
+
+  /* MOCKUPS chat: mantener tamaño cómodo, no apretar */
+  .mocks-grid{gap:20px}
+
+  /* INFORMES: previews siempre visibles */
+  .informe-card{padding:24px 20px}
+  .informe-card h3{font-size:1.5rem}
+
+  /* FASES timeline */
+  .fase{padding:22px 18px 22px 64px}
+  .fase .num{left:14px}
+
+  /* ROLES */
+  .role{padding:22px 18px}
+
+  /* TABLA fases */
+  table.fases-tabla{font-size:.86rem}
+  table.fases-tabla th{padding:12px 10px;font-size:.95rem}
+  table.fases-tabla td{padding:10px 10px}
+
+  /* SECURITY */
+  .sec-card{padding:22px 18px}
+
+  /* FAQ */
+  .faq-item summary{padding:16px 18px;font-size:.96rem;gap:10px}
+  .faq-item .answer{padding:0 18px 18px;font-size:.92rem}
+
+  /* CTA FINAL apilado */
+  .cta-final{padding:56px 0}
+  .cta-final h2{font-size:1.7rem;line-height:1.15}
+  .cta-final p{font-size:1rem;margin-bottom:26px}
+  .cta-buttons{flex-direction:column;align-items:stretch;gap:10px}
+  .cta-buttons .btn{width:100%}
+
+  /* CONTACTO + FOOTER */
+  .contacto{padding:48px 0}
+  .contacto-card{padding:22px 18px}
+  .contacto-card a{font-size:1.15rem}
+  footer{padding:30px 0 88px;font-size:.82rem}  /* padding-bottom extra para la sticky CTA */
+  footer .foot-logo{flex-direction:column;gap:8px}
+
+  /* STICKY CTA mobile */
+  .mobile-cta{
+    display:flex;position:fixed;bottom:0;left:0;right:0;z-index:90;
+    background:rgba(255,255,255,.97);backdrop-filter:blur(10px);
+    border-top:1px solid var(--verde-bg-2);padding:10px 14px env(safe-area-inset-bottom,10px);
+    gap:10px;box-shadow:0 -6px 24px rgba(0,0,0,.10);
+    animation:slideUp .55s ease-out .9s both
+  }
+  .mobile-cta a{
+    flex:1;padding:13px 8px;border-radius:10px;font-weight:700;font-size:.94rem;
+    text-align:center;display:flex;align-items:center;justify-content:center;gap:7px;
+    min-height:46px;letter-spacing:.2px;
+    transition:transform .15s ease,box-shadow .2s ease
+  }
+  .mobile-cta a:active{transform:scale(.97)}
+  .mobile-cta .call{background:var(--verde-2);color:#fff;box-shadow:0 4px 14px rgba(31,110,61,.32)}
+  .mobile-cta .wa{background:#25d366;color:#fff;box-shadow:0 4px 14px rgba(37,211,102,.32)}
+}
+
+@media(max-width:380px){
+  .hero h1{font-size:1.82rem}
+  .hero .wordmark{font-size:2rem}
+  .section-title{font-size:1.5rem}
   .nav .brand .wordmark{font-size:1.4rem}
-  .nav .logo img{height:28px}
-  .trust-inner{gap:24px}
-  .hero{padding:60px 0 80px}
+  .informe-card h3{font-size:1.35rem}
+}
+
+/* Respetar preferencia de reducir movimiento */
+@media (prefers-reduced-motion:reduce){
+  .fade-in,.stagger > *{transition:none !important;transform:none !important;opacity:1 !important}
+  .hero .btn-primary,.cta-final .btn-primary,.typing-dots span{animation:none !important}
 }
 </style>
 </head>
@@ -377,7 +511,7 @@ footer a:hover{color:#fff}
   <div class="container">
     <h2 class="section-title">Tu aserradero produce.<br/>Pero, ¿controlas qué pasa dentro?</h2>
     <p class="section-subtitle">La información de producción, máquinas, consumos y próximas roturas vive en cuadernos, en la cabeza del operario o no existe. Las decisiones se toman a ojo.</p>
-    <div class="dolores-grid">
+    <div class="dolores-grid stagger">
       <div class="dolor-card"><h4>No sabes qué produce cada línea</h4><p>Tablas, núcleos, costeros, m³ — invisibles hasta final de turno.</p></div>
       <div class="dolor-card"><h4>El estado de las máquinas es opaco</h4><p>Te enteras cuando una se rompe. No antes.</p></div>
       <div class="dolor-card"><h4>Mantenimiento reactivo</h4><p>Cambias el motor cuando deja de funcionar. Cada parada cuesta turnos enteros.</p></div>
@@ -391,7 +525,7 @@ footer a:hover{color:#fff}
   <div class="container">
     <h2 class="section-title">Pregunta en chat en vivo.<br/>Tu aserradero responde.</h2>
     <p class="section-subtitle">BottMill instala un equipo dedicado en el aserradero que recoge datos de máquinas, sensores y sistemas existentes — y los convierte en un asistente en chat en vivo para gerencia, planta, mantenimiento y administración.</p>
-    <div class="features-grid">
+    <div class="features-grid stagger">
       <div class="feat"><div class="ico">🪚</div><h3>Producción en tiempo real</h3><p>Tablas, núcleos, costeros y m³ por línea — al minuto.</p></div>
       <div class="feat"><div class="ico">⚙️</div><h3>Estado de máquinas</h3><p>OK, aviso o parada de cada máquina. Horas operativas. Paros con duración.</p></div>
       <div class="feat acento"><div class="ico">🔧</div><h3>Mantenimiento predictivo</h3><p>Vibración, temperatura, horas. Alerta antes de la rotura.<span class="ast">* Requiere sensores específicos</span></p></div>
@@ -407,7 +541,7 @@ footer a:hover{color:#fff}
   <div class="container">
     <h2 class="section-title">Ejemplos de lo que puedes preguntar</h2>
     <p class="section-subtitle">Conversaciones reales de cómo BottMill responde en el día a día del aserradero.</p>
-    <div class="mocks-grid">
+    <div class="mocks-grid stagger">
       <div class="mock-wrap">
         <div class="tg-mock">
           <div class="tg-h"><div class="dot">B</div><div>BottMill<span class="sub">bot</span></div></div>
@@ -530,7 +664,7 @@ footer a:hover{color:#fff}
   <div class="container">
     <h2 class="section-title">Resúmenes e informes automáticos</h2>
     <p class="section-subtitle">Sin pedirlos, sin prepararlos. El sistema te los entrega a los responsables — <strong>por chat en vivo y por email</strong>, las dos vías a la vez.</p>
-    <div class="informes-grid">
+    <div class="informes-grid stagger">
       <div class="informe-card">
         <div class="ic">📊</div>
         <div class="freq">Cada 15 días</div>
@@ -615,7 +749,7 @@ footer a:hover{color:#fff}
   <div class="container">
     <h2 class="section-title">Cada aserradero es distinto.<br/>BottMill se adapta.</h2>
     <p class="section-subtitle">No vendemos un paquete cerrado. Definimos juntos qué medir, por dónde empezar y qué ampliar más adelante.</p>
-    <div class="fases-list">
+    <div class="fases-list stagger">
       <div class="fase"><div class="n">1</div><h4>Visita técnica</h4><p>Vamos al aserradero. Vemos qué máquinas hay, qué datos ya se generan y qué te gustaría poder responder desde el móvil.</p></div>
       <div class="fase"><div class="n">2</div><h4>Propuesta a medida</h4><p>Plan claro con dos fases: qué se puede medir ya con lo que tienes, y qué sensores adicionales hacen falta para ampliar.</p></div>
       <div class="fase"><div class="n">3</div><h4>Instalación llave en mano</h4><p>Llevamos el equipo configurado. Instalamos los sensores donde toque. Conectamos a tu red. Tu equipo no instala nada.</p></div>
@@ -630,7 +764,7 @@ footer a:hover{color:#fff}
   <div class="container">
     <h2 class="section-title">Qué gana cada perfil del aserradero</h2>
     <p class="section-subtitle">Mismo bot. Mismo equipo. Cuatro modos de usarlo según para qué.</p>
-    <div class="roles-grid">
+    <div class="roles-grid stagger">
       <div class="role">
         <div class="ic">🧑‍💼</div>
         <h4>Dirección</h4>
@@ -702,7 +836,7 @@ footer a:hover{color:#fff}
   <div class="container">
     <h2 class="section-title">Tus datos no salen del aserradero.</h2>
     <p class="section-subtitle">En un momento en el que todo el mundo está preocupado por dónde acaban sus datos, BottMill está diseñado desde el primer minuto asumiendo que los tuyos son sensibles y se quedan en casa.</p>
-    <div class="security-grid">
+    <div class="security-grid stagger">
       <div class="sec-card"><div class="ico">🚫☁️</div><h4>Sin nube</h4><p>El sistema vive en local, en un equipo bajo tu control. No hay servidor externo ni backups remotos.</p></div>
       <div class="sec-card"><div class="ico">🧠</div><h4>IA 100% local</h4><p>El modelo que entiende tus preguntas corre on-device. Sin OpenAI, sin Anthropic, sin Google.</p></div>
       <div class="sec-card"><div class="ico">👁️</div><h4>Sólo lectura</h4><p>El bot consulta — no escribe en PLCs ni sistemas productivos.</p></div>
@@ -782,11 +916,17 @@ footer a:hover{color:#fff}
   </div>
 </footer>
 
+<!-- STICKY CTA MOBILE (oculta en desktop por CSS) -->
+<nav class="mobile-cta" aria-label="Acciones rápidas">
+  <a href="tel:+34607306219" class="call" aria-label="Llamar al 607 306 219">📞 Llamar</a>
+  <a href="https://wa.me/34607306219?text=Hola%2C%20me%20interesa%20BottMill%20para%20mi%20aserradero." target="_blank" rel="noopener" class="wa" aria-label="WhatsApp">💬 WhatsApp</a>
+</nav>
+
 <script>
 const observer = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
 },{threshold:0.08});
-document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+document.querySelectorAll('.fade-in,.stagger').forEach(el=>observer.observe(el));
 </script>
 
 </body>
